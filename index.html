@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Guizin Store</title>
+<style>
+:root{--bg:#060810;--panel:#0d111c;--line:#292f43;--purple:#a52cff;--text:#fff;--muted:#9ba3b5}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:14px Arial,Helvetica,sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.14;background-image:linear-gradient(125deg,transparent 0 48%,#8124ff 49%,transparent 50%),linear-gradient(305deg,transparent 0 48%,#8124ff 49%,transparent 50%);background-size:480px 480px}
+header{height:76px;position:sticky;top:0;z-index:30;background:rgba(6,8,16,.96);border-bottom:1px solid #252b3c;display:flex;align-items:center;padding:0 4%;gap:35px}
+.logo{width:145px;text-decoration:none;color:#fff;font-weight:1000;font-style:italic;font-size:25px;line-height:.72;text-shadow:0 0 14px #7420ff}.logo em{display:block;color:#b12cff;font-size:15px;margin-left:30px;margin-top:7px;font-style:italic}
+nav{display:flex;gap:27px;flex:1}nav a{color:#d1d5df;text-decoration:none;padding:28px 0;border-bottom:2px solid transparent}nav a:hover,nav a.active{color:#bd50ff;border-bottom-color:#a52cff}
+.top{display:flex;align-items:center;gap:12px}.search{width:240px;background:#0c111d;border:1px solid #343b51;border-radius:24px;color:#fff;padding:11px 15px;outline:none}.cart,.login{border:1px solid #343b51;background:#101522;color:#fff;border-radius:10px;padding:10px 14px;cursor:pointer}.login{border-color:#a52cff;color:#c455ff}.cart b{background:#8d2eff;border-radius:20px;padding:2px 6px;font-size:10px}
+main{position:relative;z-index:1}.hero{max-width:1250px;min-height:430px;margin:0 auto;background:linear-gradient(90deg,rgba(4,6,12,.98) 0%,rgba(5,6,14,.72) 40%,rgba(4,4,10,.18)),url("hero-reference.jpg") center/cover;border-bottom:1px solid #39304f;display:flex;align-items:center;padding:50px}
+.hero h1{font-size:59px;line-height:.98;margin:12px 0}.hero h1 span{color:#ad31ff;text-shadow:0 0 24px #7921ff}.hero p{font-size:17px;color:#d0d3dc;max-width:570px;line-height:1.45}.tag{color:#b941ff;font-weight:bold}.btn{display:inline-block;border:0;border-radius:9px;background:linear-gradient(90deg,#7b24ff,#b52eff);color:#fff;text-decoration:none;padding:13px 23px;font-weight:800;cursor:pointer;box-shadow:0 0 18px #7724aa55}
+.features{max-width:1250px;margin:-1px auto 0;display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid #252b3c}.feature{padding:20px;display:flex;gap:12px;align-items:center}.feature strong{font-size:22px;color:#ad35ff}.feature small{display:block;color:#929aab;margin-top:4px}
+.section{max-width:1250px;margin:30px auto;padding:0 18px}.title{display:flex;justify-content:space-between;align-items:center}.title h2{font-size:22px}.title a{color:#b13cff;text-decoration:none}
+.categories{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}.cat{height:125px;background:linear-gradient(145deg,#101522,#0a0d15);border:1px solid #30384e;border-radius:13px;color:#fff;text-align:center;cursor:pointer}.cat:hover{border-color:#a32eff;box-shadow:0 0 18px #8b25ff33}.cat .ico{font-size:38px;display:block;margin-bottom:10px}.cat small{display:block;color:#929aab;margin-top:5px}
+.products{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}.card{background:#0e131f;border:1px solid #30384b;border-radius:12px;overflow:hidden}.pic{height:125px;background:radial-gradient(circle,#5720a4,#111521 65%);display:grid;place-items:center;font-size:52px}.info{padding:13px}.info h3{margin:0 0 6px;font-size:15px}.info p{margin:0;color:#9ca4b4;font-size:12px;min-height:30px}.price{font-size:18px;font-weight:900;margin:12px 0}.buy{width:100%;border:0;border-radius:8px;background:#8c28ff;color:#fff;padding:10px;font-weight:800;cursor:pointer}
+.ctas{display:grid;grid-template-columns:1.2fr 1fr;gap:14px}.cta{background:#0e131f;border:1px solid #8630df;border-radius:13px;padding:20px;display:flex;align-items:center;justify-content:space-between}.cta h3{margin:0 0 5px}.cta p{color:#9aa2b2;margin:0;font-size:12px}
+footer{border-top:1px solid #242a39;margin-top:35px;padding:28px 5%;display:flex;justify-content:space-between;align-items:center;color:#747d8e}.footerlogo{font-size:20px;font-weight:900;color:#fff}.footerlogo span{color:#ad32ff}
+.modal{display:none;position:fixed;inset:0;background:#000b;z-index:50;align-items:center;justify-content:center}.modal.show{display:flex}.box{width:min(500px,92%);background:#101520;border:1px solid #40485e;border-radius:16px;padding:25px;position:relative}.close{position:absolute;right:12px;top:7px;background:none;border:0;color:#fff;font-size:28px;cursor:pointer}.row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #292f3e}.total{display:flex;justify-content:space-between;font-size:20px;padding:20px 0}.full{width:100%}
+@media(max-width:900px){header{gap:10px;padding:0 15px}nav{display:none}.search{width:150px}.hero{margin:0 10px;padding:35px 25px;min-height:400px}.hero h1{font-size:43px}.features{grid-template-columns:repeat(2,1fr)}.categories{grid-template-columns:repeat(3,1fr)}.products{grid-template-columns:repeat(2,1fr)}.ctas{grid-template-columns:1fr}}
+@media(max-width:520px){.logo{font-size:20px;width:110px}.search{display:none}.hero{min-height:430px;background-position:65% center}.hero h1{font-size:38px}.hero p{font-size:15px}.features{grid-template-columns:repeat(2,1fr)}.feature{padding:13px;font-size:12px}.categories{grid-template-columns:repeat(2,1fr)}.products{grid-template-columns:1fr}.cta{flex-direction:column;gap:15px;text-align:center}footer{display:block;text-align:center}}
+
+.hero{max-width:none;border-radius:0;margin:0;min-height:305px;padding:45px 5%;background-position:center}
+.hero h1{font-size:56px}.section{max-width:1160px}
+@media(max-width:900px){.hero{min-height:520px;background-position:68% center}.hero h1{font-size:42px}}
+</style>
+</head>
+<body>
+<header>
+<a class="logo" href="#inicio">👑 GUIZIN<em>STORE</em></a>
+<nav><a class="active" href="#inicio">⌂ &nbsp;Início</a><a href="#produtos">▣ &nbsp;Produtos</a><a href="#categorias">▦ &nbsp;Categorias</a><a href="#suporte">◉ &nbsp;Suporte</a><a href="#sobre">❸ &nbsp;Sobre</a></nav>
+<div class="top"><input class="search" id="search" placeholder="Buscar produtos..." oninput="searchProducts()"><button class="cart" onclick="openCart()">🛒 <b id="count">0</b></button><button class="login">👤 Entrar</button></div>
+</header>
+<main>
+<section class="hero" id="inicio"><div><div class="tag">⚡ ENTREGA RÁPIDA</div><h1>Bem-vindo à<br><span>Guizin Store</span></h1><p>Sua loja de produtos digitais do Roblox!<br>Robux, Gamepasses, Blox Fruits e muito mais.</p><a class="btn" href="#produtos">Ver produtos</a></div></section>
+<div class="features"><div class="feature"><strong>ϟ</strong><div><b>Entrega rápida</b><small>Automática</small></div></div><div class="feature"><strong>♢</strong><div><b>Compra segura</b><small>100% confiável</small></div></div><div class="feature"><strong>♧</strong><div><b>Suporte 24h</b><small>Tire suas dúvidas</small></div></div><div class="feature"><strong>☆</strong><div><b>Melhores preços</b><small>Do mercado</small></div></div></div>
+<section class="section" id="categorias"><div class="title"><h2>👑 &nbsp;Categorias</h2><a href="#produtos">Ver todas →</a></div><div class="categories"><button class="cat" onclick="filter('Robux')"><span class="ico">💎</span><b>Robux</b><small>Compre Robux</small></button><button class="cat" onclick="filter('Blox Fruits')"><span class="ico">👾</span><b>Blox Fruits</b><small>Gamepasses e Frutas</small></button><button class="cat" onclick="filter('Gamepass')"><span class="ico">🎟️</span><b>Gamepasses</b><small>Vários jogos</small></button><button class="cat" onclick="filter('Digital')"><span class="ico">🎮</span><b>Itens e Avatares</b><small>Personalize</small></button><button class="cat" onclick="showAll()"><span class="ico">🎁</span><b>Outros Produtos</b><small>E muito mais!</small></button></div></section>
+<section class="section" id="produtos"><div class="title"><h2>👑 &nbsp;Produtos em destaque</h2><a href="#produtos">Ver todas →</a></div><div class="products" id="products"></div></section>
+<section class="section ctas" id="suporte"><div class="cta"><div><h3>💜 ENTRE NO NOSSO DISCORD</h3><p>Fique por dentro das novidades, promoções e tire suas dúvidas!</p></div><a class="btn" href="https://discord.com/" target="_blank">Entrar agora →</a></div><div class="cta"><div><h3>🛡️ Precisa de ajuda?</h3><p>Entre em contato com nosso suporte!</p></div><a class="btn" href="https://wa.me/" target="_blank">Entrar no WhatsApp</a></div></section>
+</main>
+<footer id="sobre"><div class="footerlogo">👑 GUIZIN <span>STORE</span></div><div>Início &nbsp; Produtos &nbsp; Categorias &nbsp; Suporte &nbsp; Termos de Uso &nbsp; Política de Privacidade</div><div>© 2026 Guizin Store.</div></footer>
+<div class="modal" id="modal" onclick="if(event.target===this)closeCart()"><div class="box"><button class="close" onclick="closeCart()">×</button><h2>🛒 Seu carrinho</h2><div id="items"></div><div class="total"><span>Total</span><b id="total">R$ 0,00</b></div><button class="btn full" onclick="alert('O carrinho está funcionando. Para pagamento real, conecte um gateway de pagamento.')">Finalizar compra</button></div></div>
+<script>
+const products=[
+['Robux 400','Robux',24.90,'💎','Receba 400 Robux na sua conta.'],
+['2x Money (Blox Fruits)','Blox Fruits',14.90,'👾','Dobre sua recompensa de dinheiro.'],
+['Gamepass Fast Boats','Gamepass',19.90,'🚤','Tenha barcos mais rápidos no jogo!'],
+['Fruta Aleatória (Blox Fruits)','Blox Fruits',29.90,'🍎','Receba uma fruta aleatória.'],
+['Robux 800','Robux',49.90,'💠','Receba 800 Robux na sua conta.'],
+['Robux 1000','Robux',59.90,'💎','Receba 1000 Robux na sua conta.'],
+['Gamepass Especial','Gamepass',34.90,'🎟️','Gamepass para seu jogo.'],
+['Item Digital','Digital',9.90,'🎮','Produto digital.'],
+['Robux 2000','Robux',99.90,'💠','Receba 2000 Robux na sua conta.'],
+['Fruta Especial','Blox Fruits',39.90,'🍇','Produto para Blox Fruits.']
+];
+let cart=[];const money=n=>n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+function render(list=products){document.querySelector('#products').innerHTML=list.map(p=>`<article class="card"><div class="pic">${p[3]}</div><div class="info"><h3>${p[0]}</h3><p>${p[4]}</p><div class="price">${money(p[2])}</div><button class="buy" onclick="add(${products.indexOf(p)})">🛒 Comprar</button></div></article>`).join('')}
+function filter(c){render(products.filter(p=>p[1]===c));document.querySelector('#produtos').scrollIntoView({behavior:'smooth'})}function showAll(){render()}
+function searchProducts(){let q=document.querySelector('#search').value.toLowerCase();render(products.filter(p=>(p[0]+' '+p[1]).toLowerCase().includes(q)))}
+function add(i){cart.push(products[i]);update();openCart()}function remove(i){cart.splice(i,1);update()}
+function update(){document.querySelector('#count').textContent=cart.length;document.querySelector('#items').innerHTML=cart.length?cart.map((p,i)=>`<div class="row"><span>${p[0]}</span><span>${money(p[2])} <button onclick="remove(${i})">✕</button></span></div>`).join(''):'<p style="color:#9ba3b5">Seu carrinho está vazio.</p>';document.querySelector('#total').textContent=money(cart.reduce((s,p)=>s+p[2],0))}
+function openCart(){document.querySelector('#modal').classList.add('show');update()}function closeCart(){document.querySelector('#modal').classList.remove('show')}render();
+</script>
+</body>
+</html>
